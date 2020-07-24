@@ -1,56 +1,35 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "../../Post.css";
+import "../Put.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-class PutBook extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id_buku: "",
-      judul_buku: "",
-      id_kategori: "",
-      id_pengarang: "",
-      id_penerbit: "",
-    };
-  }
-
-  changeHandler = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  submitHandler = (e) => {
-    e.preventDefault();
-    console.log(this.state);
-    axios
-      .put("http://localhost:3000/book", this.state)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
+class CreateBook extends Component {
   render() {
+    const {
+      id_buku,
+      judul_buku,
+      id_kategori,
+      id_pengarang,
+      id_penerbit,
+      handleChangeInput,
+      addNewBook,
+    } = this.props;
     return (
       <div className="body">
         <div className="col-md-4 col-sm-12 mb-3">
           <div class="login-box">
             <Card border="success" className="body_card">
-              <h1>Update Book</h1>
+              <h1>Add Book</h1>
               <div class="textbox">
                 <i class="fa fa-book" aria-hidden="true"></i>
                 <Form.Control
                   type="text"
                   name="id_buku"
                   placeholder="Input id buku"
-                  value={this.state.id_buku}
-                  onChange={this.changeHandler}
+                  value={id_buku}
+                  onChange={handleChangeInput}
                 />
               </div>
               <div class="textbox">
@@ -59,8 +38,8 @@ class PutBook extends Component {
                   type="text"
                   name="judul_buku"
                   placeholder="Input judul buku"
-                  value={this.state.judul_buku}
-                  onChange={this.changeHandler}
+                  value={judul_buku}
+                  onChange={handleChangeInput}
                 />
               </div>
               <div class="textbox">
@@ -69,8 +48,8 @@ class PutBook extends Component {
                   type="text"
                   name="id_kategori"
                   placeholder="Input id kategori"
-                  value={this.state.id_kategori}
-                  onChange={this.changeHandler}
+                  value={id_kategori}
+                  onChange={handleChangeInput}
                 />
               </div>
               <div class="textbox">
@@ -79,8 +58,8 @@ class PutBook extends Component {
                   type="text"
                   name="id_pengarang"
                   placeholder="Input id pengarang"
-                  value={this.state.id_pengarang}
-                  onChange={this.changeHandler}
+                  value={id_pengarang}
+                  onChange={handleChangeInput}
                 />
               </div>
               <div class="textbox">
@@ -89,18 +68,18 @@ class PutBook extends Component {
                   type="text"
                   name="id_penerbit"
                   placeholder="Input id penerbit"
-                  value={this.state.id_penerbit}
-                  onChange={this.changeHandler}
+                  value={id_penerbit}
+                  onChange={handleChangeInput}
                 />
               </div>
               <Button
                 className="btn"
                 variant="outline-success"
                 type="submit"
-                onClick={this.submitHandler}
+                onClick={() => addNewBook()}
               >
                 Submit
-              </Button>{" "}
+              </Button>
             </Card>
             <br />
           </div>
@@ -110,4 +89,4 @@ class PutBook extends Component {
   }
 }
 
-export default PutBook;
+export default CreateBook;

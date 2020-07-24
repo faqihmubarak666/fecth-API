@@ -1,0 +1,13 @@
+.container-page {
+  background-image: url(./image/book.jpg);
+  /* height: 800px; */
+  width: 1750px;
+  text-align: center;
+}
+
+.body-table {
+  background-color: lightgoldenrodyellow;
+  width: 1200px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
