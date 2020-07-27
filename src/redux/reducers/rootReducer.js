@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import GetAllBookReducer from "./get/GetAllBook";
+
+import GetUserReducer from "./userReducer/index";
 
 const rootReducer = combineReducers({
-  rGetAllBook: GetAllBookReducer,
+  rGetDataUser: GetUserReducer,
 });
 
 export default rootReducer;

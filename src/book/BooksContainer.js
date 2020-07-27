@@ -11,9 +11,9 @@ import DetailBook from "./DetailBook";
 import PutBook from "./PutBook";
 import CreateBook from "./CreateBook";
 import swal from "sweetalert";
-// import loadData from "../containers/Counter";
+import { connect } from "react-redux";
 
-export default class BooksContainer extends Component {
+class BooksContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,30 +22,31 @@ export default class BooksContainer extends Component {
       id_buku: "",
       judul_buku: "",
       id_kategori: "",
+      nama_kategori: "",
       id_pengarang: "",
+      nama_pengarang: "",
       id_penerbit: "",
+      nama_penerbit: "",
       showDetail: false,
       create: false,
       put: false,
     };
   }
 
-  // getLoadData = () => {
-  //   this.getLoadData();
-  // };
+  componentDidMount() {
+    this.loadData();
+  }
 
-  // componentDidMount() {
-  //   this.getLoadData();
-  // }
-
-  // loadData = () => {
-  //   getAllBooks().then((res) => {
-  //     console.log("Books :", res);
-  //     if (res.status === 200) {
-  //       this.setState({ ...this.state, books: res.result });
-  //     }
-  //   });
-  // };
+  loadData = () => {
+    getAllBooks().then((res) => {
+      console.log("Books :", res);
+      if (res.status === 200) {
+        // this.setState({ ...this.state, books: res.result });
+        const dataResult = res.result;
+        this.props.GetData(dataResult);
+      }
+    });
+  };
 
   getBookById = (id) => {
     getBookById(id).then((res) => {
@@ -80,7 +81,7 @@ export default class BooksContainer extends Component {
             id_pengarang: "",
             id_penerbit: "",
           });
-          // this.getLoadData();
+          this.loadData();
         }
       })
       .catch((err) => {
@@ -108,7 +109,7 @@ export default class BooksContainer extends Component {
             id_pengarang: "",
             id_penerbit: "",
           });
-          // this.getLoadData();
+          this.loadData();
         }
       })
       .catch((err) => {
@@ -123,7 +124,7 @@ export default class BooksContainer extends Component {
       deleteBook(id_buku).then((response) => {
         if (response.status === 200) {
           alert(`Book successfully deleted`);
-          // this.getLoadData();
+          this.loadData();
         }
       });
     }
@@ -154,10 +155,12 @@ export default class BooksContainer extends Component {
     });
   };
 
-  buttonPut = () => {
+  buttonPut = (book) => {
+    console.log(`ini book`, book);
     this.setState({
       ...this.state,
       put: !this.state.put,
+      selectedBook: book,
     });
   };
 
@@ -166,11 +169,7 @@ export default class BooksContainer extends Component {
       <div>
         {this.state.put ? (
           <PutBook
-            id_buku={this.state.id_buku}
-            judul_buku={this.state.judul_buku}
-            id_kategori={this.state.id_kategori}
-            id_pengarang={this.state.id_pengarang}
-            id_penerbit={this.state.id_penerbit}
+            selectedBook={this.state.selectedBook}
             handleChangeInput={this.handleChangeInput}
             editBook={this.editBook}
           />
@@ -193,7 +192,6 @@ export default class BooksContainer extends Component {
         )}
         <h1 style={{ color: "lightgoldenrodyellow" }}>TABLE BOOKS</h1>
         <TableBooks
-          // books={this.state.books}
           showDetail={this.showDetail}
           buttonCreate={this.buttonCreate}
           buttonPut={this.buttonPut}
@@ -208,3 +206,11 @@ export default class BooksContainer extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GetData: (dataResult) => dispatch({ type: "GETALLBOOK", data: dataResult }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(BooksContainer);

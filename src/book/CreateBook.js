@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "../Put.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-class PutBook extends Component {
+class CreateBook extends Component {
   render() {
     const {
       id_buku,
@@ -14,14 +13,14 @@ class PutBook extends Component {
       id_pengarang,
       id_penerbit,
       handleChangeInput,
-      editBook,
+      addNewBook,
     } = this.props;
     return (
       <div className="body">
         <div className="col-md-4 col-sm-12 mb-3">
           <div class="login-box">
             <Card border="success" className="body_card">
-              <h1>Update Book</h1>
+              <h1>Add Book</h1>
               <div class="textbox">
                 <i class="fa fa-book" aria-hidden="true"></i>
                 <Form.Control
@@ -76,7 +75,7 @@ class PutBook extends Component {
                 className="btn"
                 variant="outline-success"
                 type="submit"
-                onClick={() => editBook()}
+                onClick={() => addNewBook()}
               >
                 Submit
               </Button>
@@ -89,4 +88,4 @@ class PutBook extends Component {
   }
 }
 
-export default PutBook;
+export default CreateBook;

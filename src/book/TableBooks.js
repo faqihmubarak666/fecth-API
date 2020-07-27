@@ -1,30 +1,13 @@
-import React, { Component, useState, useEffect } from "react";
+import React from "react";
 import { Table } from "react-bootstrap/cjs";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../perpustakaan/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../Page.css";
 import { connect } from "react-redux";
-import { getAllBooks } from "./BooksService";
+// import { GetData } from "./BooksService";
 
 const TableBooks = (props) => {
-  const [result, setResult] = useState(); // untuk merubah si result useSatae = setState
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`/book`);
-      const data = await response.json();
-      setResult(data.result);
-      props.getAllBooks(data.result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    // otomatis berjalan ketika load (component did mount)
-    fetchData();
-  }, []);
-
   const { books, showDetail, buttonCreate, removeBook, buttonPut } = props;
+  console.log(`ini dari table books`, books);
   return (
     <div className="body-table">
       <button
@@ -67,7 +50,7 @@ const TableBooks = (props) => {
                     </button>
 
                     <button
-                      onClick={() => buttonPut()}
+                      onClick={() => buttonPut(book)}
                       style={{
                         backgroundColor: "blue",
                         color: "white",
@@ -96,13 +79,7 @@ const TableBooks = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { books: state.result };
+  return { books: state.rGetDataBook.GetBook.result };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getAllBooks: (result) => dispatch({ type: "GETALLBOOK", data: result }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TableBooks);
+export default connect(mapStateToProps)(TableBooks);

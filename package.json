@@ -19,7 +19,8 @@
     "react-scripts": "3.4.1",
     "reactstrap": "^8.5.1",
     "redux": "^4.0.5",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^9.17.0"
   },
   "scripts": {
     "start": "react-scripts start",

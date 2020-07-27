@@ -2,12 +2,11 @@ const baseUrl = "/book";
 
 const getAllBooks = async () => {
   const books = await fetch(baseUrl);
-  // console.log(`ini data books`, books.json());
   return await books.json();
 };
 
 const getBookById = async (id) => {
-  const books = await fetch(`${baseUrl}/${id}`);
+  // const books = await fetch(`${baseUrl}/${id}`);
 };
 
 const createBook = async (form) => {
