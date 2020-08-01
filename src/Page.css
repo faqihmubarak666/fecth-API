@@ -1,13 +1,35 @@
-.container-page {
-  background-image: url(./image/book.jpg);
-  /* height: 800px; */
-  width: 1750px;
+/* .container-page {
+  background-color: cornflowerblue;
   text-align: center;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 220vh;
+  flex-direction: column;
+} */
+
+.container-page {
+  background-color: cornflowerblue;
+  text-align: center;
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
 .body-table {
-  background-color: lightgoldenrodyellow;
+  background-color: ghostwhite;
   width: 1200px;
-  border-radius: 10px;
   margin: 0 auto;
+}
+
+.button-table {
+  width: 100px;
+}
+
+.form-search {
+  text-align: center;
+  margin: 15px 15px 15px 15px;
+  align-items: center;
+  justify-content: center;
 }

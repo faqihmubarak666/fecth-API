@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-// import { login } from "./ServiceLogin";
 import FormLogin from "./FormLogin";
 import swal from "sweetalert";
-// import Swal from "sweetalert2";
 import Header from "../components/Header";
 import { withRouter } from "react-router-dom";
 
@@ -40,7 +38,7 @@ class ContainerLogin extends Component {
         });
       } else if (
         this.state.username !== "faqih.mubarak" &&
-        this.state.password !== "123"
+        this.state.password !== "123456"
       ) {
         swal("Login Invalid", "You clicked the button!", "error");
       } else {

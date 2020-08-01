@@ -42,7 +42,7 @@
 .bodyLogin {
   margin: 0;
   padding: 0;
-  background: url(./image/book.jpg);
+  background: url(./image/image.jpg);
   height: 100vh;
   background-position: "center";
   background-repeat: "no-repeat";
@@ -129,7 +129,8 @@
   margin-top: 700px;
   margin-left: 550px;
   height: 25rem;
-  background-image: url(./image/book.jpg);
+  background: url(./image/image.jpg);
+  /* background-color: dodgerblue; */
 }
 .emailErrorLogin {
   font-size: small;
